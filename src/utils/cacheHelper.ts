@@ -4,6 +4,7 @@ export const storeInCache = (
   entry: PhotoPlaceHolder.PhotoResponse[]
 ) => {
   cache[index] = entry;
+  console.log(cache);
 };
 // TODO If error call the request again from saga
 export const getFromCache = (index: number) => cache[index];
