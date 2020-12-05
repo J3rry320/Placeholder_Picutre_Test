@@ -1,14 +1,16 @@
 import React from "react";
-import Paginate from "./Paginate";
-
+type PictureCardProps = {
+  onClick: () => void;
+};
 function PictureCard({
   title,
   thumbnailUrl,
   url,
-}: Partial<PhotoPlaceHolder.PhotoResponse>) {
+  onClick,
+}: Partial<PhotoPlaceHolder.PhotoResponse> & PictureCardProps) {
   return (
     <div className="wrapper">
-      <div className="wrapper__icon-bar">
+      <div onClick={onClick} className="wrapper__icon-bar">
         <span className="material-icons">close</span>
       </div>
       <div className="picture-card">

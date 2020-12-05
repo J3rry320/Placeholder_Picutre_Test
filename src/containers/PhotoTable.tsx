@@ -29,6 +29,7 @@ function PhotoTable({ photo, getPhotosAction }: PhotoTableProps) {
         <>
           {photos?.map((ele) => (
             <PictureCard
+              onClick={() => console.log(ele.id)}
               thumbnailUrl={ele.thumbnailUrl}
               title={ele.title}
               url={ele.url}

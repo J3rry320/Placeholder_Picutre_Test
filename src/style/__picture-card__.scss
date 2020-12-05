@@ -1,5 +1,8 @@
 @import "./_config__";
 .wrapper {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.25);
+  }
   &__icon-bar {
     &:hover {
       cursor: pointer;
@@ -15,9 +18,6 @@
     display: flex;
 
     justify-content: space-between;
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.25);
-    }
 
     &__thumbnail-card {
       display: flex;
