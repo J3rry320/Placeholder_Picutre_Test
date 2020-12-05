@@ -10,7 +10,7 @@ declare module PhotoPlaceHolder {
   export type Maybe<T> = T | null;
 
   export interface IPhotoReducer {
-    photos: Maybe<PhotoResponse>;
+    photos: Maybe<PhotoResponse[]>;
     loading: Maybe<boolean>;
     error: Maybe<Error>;
   }

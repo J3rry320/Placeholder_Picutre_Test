@@ -1,16 +1,47 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
+import Paginate from "../components/Paginate";
+import PictureCard from "../components/PictureCard";
 import { getPhotosFromAPI } from "../store/actions/photos";
 // TODO Type declaration for containers
-function PhotoTable({ photo, getPhotosAction }: any) {
+type PhotoTableProps = {
+  photo: PhotoPlaceHolder.IPhotoReducer;
+  getPhotosAction: (startFrom: number) => void;
+};
+
+function PhotoTable({ photo, getPhotosAction }: PhotoTableProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
-    getPhotosAction(0);
+    getPhotosAction(currentIndex);
   }, []);
   useEffect(() => {
     console.log({ photo });
   }, [photo]);
-  return <div>Hello World from the {photo[0]}</div>;
+
+  const { loading, photos } = photo;
+  return (
+    <>
+      {loading ? (
+        <div>Loading</div>
+      ) : (
+        <>
+          {photos?.map((ele) => (
+            <PictureCard
+              thumbnailUrl={ele.thumbnailUrl}
+              title={ele.title}
+              url={ele.url}
+              key={ele.id}
+            />
+          ))}
+        </>
+      )}
+      <Paginate
+        onPageChange={({ selected }: any) => getPhotosAction(selected * 5)}
+      />
+    </>
+  );
 }
 const mapStateToProps = ({ photo }: PhotoPlaceHolder.IAppReducer) => ({
   photo,

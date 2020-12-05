@@ -6,6 +6,7 @@ import * as PhotoConstants from "../constants/photos";
 function* getPhotosSaga(params: any) {
   try {
     const { startFrom } = params;
+    console.log({ startFrom }, params);
     const requestURL = API_GET_PHOTOS(startFrom);
     const payload = yield call(getRequest, requestURL);
     yield put({ type: PhotoConstants.PHOTO_LOADING_SUCCESS, payload });
