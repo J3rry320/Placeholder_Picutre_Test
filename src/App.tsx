@@ -1,10 +1,8 @@
-import React from "react";
-import logo from "./logo.svg";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.scss";
 import PhotoTable from "./containers/PhotoTable";
-import { Provider } from "react-redux";
 import { store } from "./store";
-import { BrowserRouter, Route } from "react-router-dom";
 
 function App() {
   return (

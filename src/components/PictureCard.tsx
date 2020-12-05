@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 type PictureCardProps = {
   onEditClick: (editedValue: string) => void;
   onCloseClick: () => void;

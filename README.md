@@ -10,7 +10,12 @@ We need to make a table view of the results where the user would be able to view
 As of now I am not able to find any post resource for photos at the given API. So the edited picture would be available for a single session
 For Optimizing requests we would be caching previous requests in a hashmap. So retriving data would be faster and we don't need to request a lot of data
 The cache would be application memory
-Let's get to coding it
+
+I could have added two more features where the user can get albums from the route due to which I added react router support 
+Also the number search results per pages and the total number of pages in each album 
+I would be pushing my updates here 
+Will be adding support to upload media and create a server at jsonplaceholder in the future
+
 
 ## Available Scripts
 
