@@ -1,13 +1,16 @@
+// TODO Need to write mixins for optimising css
 @import "./_config__";
 .wrapper {
   &__icon-bar {
-    flex-direction: row;
-    &:hover {
-      cursor: pointer;
-      background-color: rgba(0, 0, 0, 0.25);
+    &-icon {
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+      padding: 10px 10px;
     }
-    padding: 10px 10px;
-    align-self: flex-end;
+    display: flex;
+    justify-content: flex-end;
   }
   display: flex;
   margin: 2% 1%;
@@ -36,8 +39,14 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         font-size: $primary-font-size;
-
         margin: 20px 20px;
+      }
+      &-input-box {
+        border: 1px #000 solid;
+        padding: 10px;
+        margin: 20px 20px;
+        text-align: center;
+        font-size: $primary-font-size;
       }
     }
     &__image {

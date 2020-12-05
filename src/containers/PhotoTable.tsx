@@ -29,7 +29,7 @@ function PhotoTable({
   const [currentPage, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    getPhotosAction(currentPage * 5);
+    getPhotosAction(currentPage);
   }, [getPhotosAction, currentPage]);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ function PhotoTable({
               onEditClick={(newValue) => {
                 editPhotoAction(ele.id, newValue, currentPage);
               }}
-              onCloseClick={() => deletePhotoAction(ele.id, currentPage * 5)}
+              onCloseClick={() => deletePhotoAction(ele.id, currentPage)}
               thumbnailUrl={ele.thumbnailUrl}
               title={ele.title}
               url={ele.url}
@@ -58,11 +58,13 @@ function PhotoTable({
         </>
       )}
       {photos?.length === 0 && <div>No More Results in this page</div>}
-      <Paginate
-        onPageChange={({ selected }: any) => {
-          setCurrentIndex(selected);
-        }}
-      />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Paginate
+          onPageChange={({ selected }: any) => {
+            setCurrentIndex(selected * 5);
+          }}
+        />
+      </div>
     </>
   );
 }

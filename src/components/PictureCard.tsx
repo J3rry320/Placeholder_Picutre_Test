@@ -14,37 +14,39 @@ function PictureCard({
   const [newValue, setNewValue] = useState("");
   return (
     <div className="wrapper">
-      {showInput ? (
-        <>
+      <div className="wrapper__icon-bar">
+        {showInput ? (
+          <>
+            <div
+              onClick={() => {
+                setShowInput(false);
+                onEditClick(newValue);
+              }}
+              className="wrapper__icon-bar-icon"
+            >
+              <span className="material-icons">done</span>
+            </div>
+            <div
+              onClick={() => setShowInput(false)}
+              className="wrapper__icon-bar-icon"
+            >
+              <span className="material-icons">close</span>
+            </div>
+          </>
+        ) : (
           <div
             onClick={() => {
-              setShowInput(false);
-              onEditClick(newValue);
+              setShowInput(true);
             }}
-            className="wrapper__icon-bar"
+            className="wrapper__icon-bar-icon"
           >
-            <span className="material-icons">done</span>
+            <span className="material-icons">create</span>
           </div>
-          <div
-            onClick={() => setShowInput(false)}
-            className="wrapper__icon-bar"
-          >
-            <span className="material-icons">close</span>
-          </div>
-        </>
-      ) : (
-        <div
-          onClick={() => {
-            setShowInput(true);
-          }}
-          className="wrapper__icon-bar"
-        >
-          <span className="material-icons">create</span>
-        </div>
-      )}
+        )}
 
-      <div onClick={onCloseClick} className="wrapper__icon-bar">
-        <span className="material-icons">delete</span>
+        <div onClick={onCloseClick} className="wrapper__icon-bar-icon">
+          <span className="material-icons">delete</span>
+        </div>
       </div>
 
       <div className="picture-card">
@@ -56,7 +58,8 @@ function PictureCard({
           />
           {showInput ? (
             <input
-              defaultValue={newValue}
+              className="picture-card__thumbnail-card-input-box"
+              defaultValue={title}
               onChange={(value) => setNewValue(value.target.value)}
             />
           ) : (

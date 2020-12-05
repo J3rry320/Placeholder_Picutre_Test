@@ -48,8 +48,9 @@ function* editPhotoSaga(params: any) {
   const { idToUpdate, updatedInfo, currentPage } = params;
   try {
     const currentState = yield select(getPhotoState);
-    const finalState = currentState.photos.forEach((ele: any) => {
+    const finalState = currentState.photos.map((ele: any) => {
       if (ele.id === idToUpdate) ele.title = updatedInfo;
+      return ele;
     });
     console.log({ finalState });
     storeInCache(currentPage, finalState);
