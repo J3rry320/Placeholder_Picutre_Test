@@ -13,3 +13,14 @@ export const deletePhotoFromState = (
   deleteID,
   currentPage,
 });
+
+export const editPhotoInState = (
+  idToUpdate: number,
+  updatedInfo: string,
+  currentPage: number
+) => ({
+  idToUpdate,
+  updatedInfo,
+  currentPage,
+  type: PhotoConstants.EDIT_PHOTO,
+});

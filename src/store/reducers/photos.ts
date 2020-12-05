@@ -5,6 +5,7 @@ const INIT_STATE: PhotoPlaceHolder.IPhotoReducer = {
   error: null,
 };
 // TODO Make actions typesafe
+// TODO Send error code in saga to handle error messages
 export default function Photos(state = INIT_STATE, actions: any) {
   const { payload, error, type, finalState } = actions;
   switch (type) {
@@ -17,6 +18,10 @@ export default function Photos(state = INIT_STATE, actions: any) {
     case PhotoConstants.DELETE_PHOTO_SUCCESS:
       return { ...state, photos: finalState };
     case PhotoConstants.DELETE_PHOTO_ERROR:
+      return { ...state, error };
+    case PhotoConstants.EDIT_PHOTO_SUCCESS:
+      return { ...state, finalState };
+    case PhotoConstants.EDIT_PHOTO_ERROR:
       return { ...state, error };
     default:
       return state;

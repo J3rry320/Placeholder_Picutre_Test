@@ -5,6 +5,7 @@ import Paginate from "../components/Paginate";
 import PictureCard from "../components/PictureCard";
 import {
   deletePhotoFromState,
+  editPhotoInState,
   getPhotosFromAPI,
 } from "../store/actions/photos";
 // TODO Type declaration for containers
@@ -12,12 +13,18 @@ type PhotoTableProps = {
   photo: PhotoPlaceHolder.IPhotoReducer;
   getPhotosAction: (startFrom: number) => void;
   deletePhotoAction: (deleteID: number, currentPage: number) => void;
+  editPhotoAction: (
+    idToUpdate: number,
+    updatedInfo: string,
+    currentPage: number
+  ) => void;
 };
 
 function PhotoTable({
   photo,
   getPhotosAction,
   deletePhotoAction,
+  editPhotoAction,
 }: PhotoTableProps) {
   const [currentPage, setCurrentIndex] = useState(0);
 
@@ -38,7 +45,10 @@ function PhotoTable({
         <>
           {photos?.map((ele) => (
             <PictureCard
-              onClick={() => deletePhotoAction(ele.id, currentPage * 5)}
+              onEditClick={(newValue) => {
+                editPhotoAction(ele.id, newValue, currentPage);
+              }}
+              onCloseClick={() => deletePhotoAction(ele.id, currentPage * 5)}
               thumbnailUrl={ele.thumbnailUrl}
               title={ele.title}
               url={ele.url}
@@ -51,7 +61,6 @@ function PhotoTable({
       <Paginate
         onPageChange={({ selected }: any) => {
           setCurrentIndex(selected);
-          // getPhotosAction(selected * 5);
         }}
       />
     </>
@@ -65,6 +74,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   getPhotosAction: (startFrom: number) => dispatch(getPhotosFromAPI(startFrom)),
   deletePhotoAction: (deleteID: number, currentPage: number) =>
     dispatch(deletePhotoFromState(deleteID, currentPage)),
+  editPhotoAction: (
+    idToUpdate: number,
+    updatedInfo: string,
+    currentPage: number
+  ) => dispatch(editPhotoInState(idToUpdate, updatedInfo, currentPage)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PhotoTable);

@@ -1,6 +1,7 @@
 @import "./_config__";
 .wrapper {
   &__icon-bar {
+    flex-direction: row;
     &:hover {
       cursor: pointer;
       background-color: rgba(0, 0, 0, 0.25);

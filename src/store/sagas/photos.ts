@@ -44,7 +44,23 @@ function* deletePhotosSaga(params: any) {
   }
 }
 
+function* editPhotoSaga(params: any) {
+  const { idToUpdate, updatedInfo, currentPage } = params;
+  try {
+    const currentState = yield select(getPhotoState);
+    const finalState = currentState.photos.forEach((ele: any) => {
+      if (ele.id === idToUpdate) ele.title = updatedInfo;
+    });
+    console.log({ finalState });
+    storeInCache(currentPage, finalState);
+    yield put({ type: PhotoConstants.EDIT_PHOTO_SUCCESS, finalState });
+  } catch (error) {
+    yield put({ type: PhotoConstants.EDIT_PHOTO_ERROR, error });
+  }
+}
+
 export default function* rootPhotoSaga() {
+  yield takeLatest(PhotoConstants.EDIT_PHOTO, editPhotoSaga);
   yield takeLatest(PhotoConstants.PHOTO_LOADING, getPhotosSaga);
   yield takeLatest(PhotoConstants.DELETE_PHOTO, deletePhotosSaga);
 }
